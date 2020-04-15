@@ -58,9 +58,7 @@ async function handleRequest(request) {
   var rewritter = new HTMLRewriter()
   .on('a#url', {
     element(element) {
-      const href = element.getAttribute("href")
-
-      if (href){
+      if (element.hasAttribute("href")){
         element.setAttribute("href", "http://khairulmakirin.website")
       }
       
@@ -75,6 +73,25 @@ async function handleRequest(request) {
   .on('title', {
     element(element) {
       element.setInnerContent("Khairul Take Home Test")
+    }
+  })
+  .on('h1#title', {
+    element(element) {
+      if (variant.charAt(variant.length-1) == '1') {
+        element.setInnerContent("Wellcome to Variant 1")
+      } else if (variant.charAt(variant.length-1) == '2') {
+        element.setInnerContent("Hello from Variant 2")
+      }
+    }
+  })
+  .on('div[class~=bg-gray-500]', {
+    element(element) {
+      const divClass = element.getAttribute("class")
+      if (variant.charAt(variant.length-1) == '1') {
+        element.setAttribute("class", divClass + " bg-purple-200")
+      } else if (variant.charAt(variant.length-1) == '2') {
+        element.setAttribute("class", divClass + " bg-green-200")
+      }
     }
   })
 
