@@ -48,7 +48,7 @@ async function handleRequest(request) {
   newResponse = new Response(response, {
     "headers": {
       "Content-Type": "text/html",
-      "Set-Cookie": VISITED_COOKIE_NAME + "=" + variant + "; SameSite=Strict" + "; Domain=example.com",
+      "Set-Cookie": VISITED_COOKIE_NAME + "=" + variant + "; SameSite=Strict",
     },
     "credentials": "include"
   })
